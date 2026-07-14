@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReWorth — Waste to Wealth</title>
+<meta name="description" content="AI-powered waste identification, recycling guide, community sharing and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ── PRELOADER ── -->
+<div id="preloader" aria-hidden="true"><div class="preloader-ring"></div></div>
+<script>setTimeout(()=>{var p=document.getElementById("preloader");if(p)p.classList.add("done");},1800);</script>
+
+<!-- ── NAVBAR ── -->
+<header class="site-header" id="siteHeader">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">♻</span>
+      <span class="brand-name">ReWorth</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home"      class="nav-link">Home</a>
+      <a href="#detector"  class="nav-link">AI Detector</a>
+      <a href="#guide"     class="nav-link">Recycling Guide</a>
+      <a href="#community" class="nav-link">Community</a>
+      <a href="#locations" class="nav-link">Locations</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <button class="lang-btn" id="langToggle" aria-label="Switch language">
+        🌐 <span id="langLabel">தமிழ்</span>
+      </button>
+      <!-- guest buttons -->
+      <div id="guestActions" class="auth-actions">
+        <button class="btn btn-ghost btn-sm" id="openSignIn">Sign In</button>
+        <button class="btn btn-primary btn-sm" id="openSignUp">Sign Up</button>
+      </div>
+      <!-- logged-in chip -->
+      <div class="user-chip hidden" id="userChip">
+        <a href="#dashboard" class="user-avatar" id="userAvatar">R</a>
+        <span id="userNameLabel">User</span>
+        <button class="icon-btn icon-btn-sm" id="signOutBtn" title="Sign out">✕</button>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#home">Home</a>
+    <a href="#detector">AI Detector</a>
+    <a href="#guide">Recycling Guide</a>
+    <a href="#community">Community</a>
+    <a href="#locations">Locations</a>
+    <a href="#dashboard">Dashboard</a>
+    <div class="mobile-drawer-actions" id="mobileAuthActions">
+      <button class="btn btn-ghost btn-sm" id="openSignInMobile">Sign In</button>
+      <button class="btn btn-primary btn-sm" id="openSignUpMobile">Sign Up</button>
+      <button class="lang-btn" id="langToggleMobile" style="margin-top:8px">🌐 <span>தமிழ்</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ══════════════════════════════════════════════════════════ HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg-decor" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">✦ AI-powered circular economy</div>
+      <h1 class="display">Turn Waste Into<br><span class="gradient-text">Wealth</span></h1>
+      <p class="hero-sub">Upload a photo of any waste item. Our AI powered by Google Gemini identifies it, tells you how to recycle it, and connects you with your community.</p>
+      <div class="hero-ctas">
+        <a href="#detector" class="btn btn-primary btn-lg">🔍 Detect Waste Now</a>
+        <a href="#guide"    class="btn btn-secondary btn-lg">📖 Recycling Guide</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><strong>AI-Powered</strong><span>Gemini Vision</span></div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><strong>10+</strong><span>Waste Categories</span></div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><strong>Free</strong><span>Always</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="hero-scan-card">
+          <div class="scan-badge">🤖 AI Analysis</div>
+          <div class="scan-result-preview">
+            <div class="scan-icon">♻</div>
+            <div class="scan-info">
+              <div class="scan-type">Plastic Bottle</div>
+              <div class="scan-cat">Recyclable Plastic</div>
+            </div>
+            <div class="scan-conf">96%</div>
+          </div>
+          <div class="scan-bar-row"><span>Recyclable</span><div class="scan-bar"><div class="scan-bar-fill" style="width:96%"></div></div></div>
+        </div>
+        <div class="hero-float-tag tag-top">🌿 Eco Friendly</div>
+        <div class="hero-float-tag tag-bottom">📍 Chennai, TN</div>
+      </div>
+    </div>
+  </div>
+  <a href="#detector" class="scroll-cue" aria-label="Scroll">↓</a>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ AI DETECTOR -->
+<section id="detector" class="section detector-section">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">🤖 The main feature</div>
+      <h2 class="display">AI Waste Detector</h2>
+      <p class="section-sub">Upload or capture a photo — Gemini AI tells you exactly what it is and how to handle it.</p>
+    </div>
+    <div class="detector-card reveal">
+      <!-- left: upload -->
+      <div class="detector-col">
+        <div class="detector-frame" id="detectorFrame">
+          <video id="cameraVideo" autoplay playsinline muted class="hidden"></video>
+          <img  id="capturedImage" alt="Waste item" class="hidden">
+          <div class="detector-empty" id="detectorEmpty">
+            <div class="detector-empty-icon">📷</div>
+            <span>Upload or capture an image to identify waste</span>
+          </div>
+          <div class="detector-analyzing hidden" id="detectorAnalyzing">
+            <div class="spinner"></div>
+            <span>Analyzing with Gemini AI…</span>
+          </div>
+          <div class="scan-overlay hidden" id="scanOverlay">
+            <div class="scan-line-ai"></div>
+          </div>
+        </div>
+        <p class="detector-error hidden" id="detectorError">Camera blocked — upload a photo instead.</p>
+        <div class="detector-buttons">
+          <button class="btn btn-primary"           id="startCameraBtn">📷 Camera</button>
+          <button class="btn btn-primary hidden"    id="captureBtn">📸 Capture</button>
+          <button class="btn btn-secondary"         id="uploadBtn">⬆ Upload</button>
+          <button class="btn btn-ghost hidden"      id="retakeBtn">↺ Try Another</button>
+          <input type="file" id="fileInput" accept="image/*" class="hidden">
+        </div>
+        <canvas id="captureCanvas" class="hidden"></canvas>
+      </div>
+      <!-- right: result -->
+      <div class="detector-col">
+        <div class="result-empty" id="resultEmpty">
+          <div style="font-size:48px;margin-bottom:12px">♻</div>
+          <p>Your result will appear here once you upload or capture an image.</p>
+        </div>
+        <div class="result-panel hidden" id="resultPanel">
+          <div class="result-head">
+            <div class="result-icon" id="resultIcon">♻</div>
+            <div class="result-title-block">
+              <div class="result-label">Waste Type</div>
+              <div class="result-value" id="resultType">—</div>
+              <div class="result-cat"   id="resultCat">—</div>
+            </div>
+            <div class="result-badge" id="resultConf">—</div>
+          </div>
+          <div class="result-rows">
+            <div class="result-row">
+              <span class="rr-icon">🗑</span>
+              <div><div class="rr-label">Disposal Instructions</div><div class="rr-val" id="resultDisposal">—</div></div>
+            </div>
+            <div class="result-row">
+              <span class="rr-icon">♻</span>
+              <div><div class="rr-label">Recycling Suggestions</div><div class="rr-val" id="resultSuggestions">—</div></div>
+            </div>
+            <div class="result-row">
+              <span class="rr-icon">📝</span>
+              <div><div class="rr-label">Explanation</div><div class="rr-val" id="resultExplanation">—</div></div>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="saveToPostBtn" style="margin-top:16px;width:100%">📢 Share to Community</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ RECYCLING GUIDE -->
+<section id="guide" class="section guide-section">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">📖 Know-how</div>
+      <h2 class="display">Recycling Guide</h2>
+      <p class="section-sub">Everything you need to know about every type of waste — from plastic to e-waste.</p>
+    </div>
+    <div class="guide-filters reveal" id="guideFilters"></div>
+    <div class="guide-grid" id="guideGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ STATS BANNER -->
+<div class="stats-banner">
+  <div class="section-inner stats-grid">
+    <div class="stat-item"><div class="stat-num" data-count="10">0</div><div class="stat-label">Waste Categories</div></div>
+    <div class="stat-item"><div class="stat-num" data-count="100" data-suffix="%">0</div><div class="stat-label">Free to Use</div></div>
+    <div class="stat-item"><div class="stat-num" data-count="24" data-suffix="/7">0</div><div class="stat-label">AI Available</div></div>
+    <div class="stat-item"><div class="stat-num" data-count="1" data-suffix=" Planet">0</div><div class="stat-label">Worth Saving</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ COMMUNITY POSTS -->
+<section id="community" class="section community-section">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">💬 Community</div>
+      <h2 class="display">Community Posts</h2>
+      <p class="section-sub">Share your discoveries, cleanup drives, and recycling tips with the community.</p>
+    </div>
+    <div class="community-toolbar reveal">
+      <button class="btn btn-primary" id="openNewPostBtn">+ New Post</button>
+      <span class="post-hint" id="postHint"></span>
+    </div>
+    <div id="postsContainer" class="posts-grid"></div>
+    <div class="load-more-row"><button class="btn btn-secondary hidden" id="loadMorePosts">Load More</button></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ LOCATIONS -->
+<section id="locations" class="section locations-section">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">📍 Clean-up spots</div>
+      <h2 class="display">Waste Locations</h2>
+      <p class="section-sub">Report locations that need cleaning. Every report helps build a cleaner community.</p>
+    </div>
+    <div class="community-toolbar reveal">
+      <button class="btn btn-primary" id="openNewLocationBtn">+ Report Location</button>
+    </div>
+    <div id="locationsContainer" class="locations-grid"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ DASHBOARD -->
+<section id="dashboard" class="section dashboard-section hidden" aria-hidden="true">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">👤 Your Space</div>
+      <h2 class="display" id="dashWelcome">Welcome back!</h2>
+      <p class="section-sub">Your activity at a glance.</p>
+    </div>
+    <div class="dash-stats reveal" id="dashStats"></div>
+    <div class="dash-panels">
+      <div class="dash-panel reveal">
+        <h3>📊 Recent Scans</h3>
+        <div id="dashScans" class="dash-list"></div>
+      </div>
+      <div class="dash-panel reveal">
+        <h3>📢 Recent Posts</h3>
+        <div id="dashPosts" class="dash-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ CTA -->
+<section class="cta-banner">
+  <div class="section-inner cta-inner">
+    <h3 class="display">Every piece of waste has value.<br>Let AI help you discover it.</h3>
+    <a href="#detector" class="btn btn-primary btn-lg">✦ Start Detecting</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="section-inner footer-grid">
+    <div>
+      <div class="brand"><span class="brand-mark">♻</span><span class="brand-name" style="color:#fff">ReWorth</span></div>
+      <p class="footer-tagline">Turn Today's Waste into Tomorrow's Wealth.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Twitter">t</a>
+        <a href="#" aria-label="Instagram">in</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <a href="#home">Home</a>
+      <a href="#detector">AI Detector</a>
+      <a href="#guide">Recycling Guide</a>
+      <a href="#community">Community</a>
+      <a href="#locations">Locations</a>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <span>hello@reworth.eco</span>
+      <span>+91 98765 43210</span>
+      <span>Chennai, Tamil Nadu, India</span>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> ReWorth. All rights reserved. · Science Competition Project</div>
+</footer>
+
+<button class="scroll-top hidden" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
+<!-- ══════════════════════════════════════════════════ MODALS -->
+
+<!-- Auth Modal -->
+<div class="modal-overlay hidden" id="authOverlay">
+  <div class="modal auth-modal">
+    <button class="modal-close" id="authClose" aria-label="Close">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabSignIn">Sign In</button>
+      <button class="auth-tab"        id="tabSignUp">Sign Up</button>
+    </div>
+    <!-- Sign In -->
+    <form id="signInForm" class="auth-form">
+      <h3>Welcome back</h3>
+      <p class="auth-hint">Sign in to your ReWorth account.</p>
+      <div class="form-field">
+        <label for="siUsername">Username</label>
+        <input type="text" id="siUsername" autocomplete="username" placeholder="your_username" required>
+      </div>
+      <div class="form-field">
+        <label for="siPassword">Password</label>
+        <input type="password" id="siPassword" autocomplete="current-password" placeholder="••••••••" required>
+      </div>
+      <p class="auth-error hidden" id="signInError"></p>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">Sign In</button>
+      <p class="auth-switch">Don't have an account? <a href="#" id="switchToSignUp">Sign up</a></p>
+    </form>
+    <!-- Sign Up -->
+    <form id="signUpForm" class="auth-form hidden">
+      <h3>Create your account</h3>
+      <p class="auth-hint">Join ReWorth and start making a difference.</p>
+      <div class="form-field">
+        <label for="suUsername">Username</label>
+        <input type="text" id="suUsername" autocomplete="username" placeholder="choose_a_username" required>
+        <p class="field-hint">3–60 chars, letters / numbers / underscore / dot only</p>
+      </div>
+      <div class="form-field">
+        <label for="suPassword">Password</label>
+        <input type="password" id="suPassword" autocomplete="new-password" placeholder="At least 6 characters" required>
+      </div>
+      <p class="auth-error hidden" id="signUpError"></p>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">Create Account</button>
+      <p class="auth-switch">Already have an account? <a href="#" id="switchToSignIn">Sign in</a></p>
+    </form>
+  </div>
+</div>
+
+<!-- New Post Modal -->
+<div class="modal-overlay hidden" id="postOverlay">
+  <div class="modal">
+    <button class="modal-close" id="postClose">✕</button>
+    <h3 style="margin:0 0 18px">New Community Post</h3>
+    <form id="postForm">
+      <div class="form-field">
+        <label>What's on your mind?</label>
+        <textarea id="postContent" rows="4" placeholder="Share a tip, a cleanup drive, a found waste location…" required maxlength="2000" style="resize:vertical"></textarea>
+        <p class="field-hint"><span id="postCharCount">0</span>/2000</p>
+      </div>
+      <div class="form-field">
+        <label>Image URL <span class="opt-label">(optional)</span></label>
+        <input type="url" id="postImage" placeholder="https://…">
+      </div>
+      <p class="auth-error hidden" id="postError"></p>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Post</button>
+    </form>
+  </div>
+</div>
+
+<!-- New Location Modal -->
+<div class="modal-overlay hidden" id="locationOverlay">
+  <div class="modal">
+    <button class="modal-close" id="locationClose">✕</button>
+    <h3 style="margin:0 0 18px">Report a Waste Location</h3>
+    <form id="locationForm">
+      <div class="form-field">
+        <label>Title *</label>
+        <input type="text" id="locTitle" placeholder="e.g. Plastic waste near riverbank" required maxlength="150">
+      </div>
+      <div class="form-field">
+        <label>Description <span class="opt-label">(optional)</span></label>
+        <textarea id="locDesc" rows="3" placeholder="Describe what you saw…" maxlength="1000" style="resize:vertical"></textarea>
+      </div>
+      <div class="form-field">
+        <label>Address / Area <span class="opt-label">(optional)</span></label>
+        <input type="text" id="locAddress" placeholder="e.g. Anna Nagar, Chennai" maxlength="300">
+      </div>
+      <div class="form-field">
+        <label>Image URL <span class="opt-label">(optional)</span></label>
+        <input type="url" id="locImage" placeholder="https://…">
+      </div>
+      <p class="auth-error hidden" id="locationError"></p>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Report Location</button>
+    </form>
+  </div>
+</div>
+
+<!-- Gemini API Key Sidebar -->
+<div id="geminiSidebar" class="gemini-sidebar hidden">
+  <div class="gemini-sidebar-inner">
+    <button class="gemini-sidebar-close" id="closeSidebar">✕</button>
+    <div class="gemini-logo">🤖</div>
+    <h3>Gemini AI Setup</h3>
+    <p>Paste your <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Google AI Studio</a> API key to enable real AI waste detection.</p>
+    <div class="gemini-status" id="geminiStatus">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Checking…</span>
+    </div>
+    <form id="geminiKeyForm">
+      <div class="form-field">
+        <label>API Key</label>
+        <input type="password" id="geminiKeyInput" placeholder="AIza…" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">Save Key</button>
+    </form>
+    <p class="gemini-note">The key is applied immediately for this session. Add it to your <code>.env</code> file for persistence.</p>
+  </div>
+</div>
+
+<!-- Gemini FAB -->
+<button class="gemini-fab" id="geminiToggleBtn" title="Configure Gemini AI">🤖</button>
+
+<!-- Toast -->
+<div class="toast hidden" id="toast"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

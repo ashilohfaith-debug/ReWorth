@@ -1,0 +1,284 @@
+{
+  "info": {
+    "name": "ReCircle Hub API",
+    "description": "Postman collection for ReCircle Hub - Circular Economy Marketplace REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "Home / Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/", "host": ["{{base_url}}"], "path": [""] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Neha Kapoor\",\n  \"email\": \"neha@example.com\",\n  \"phone\": \"9999999999\",\n  \"password\": \"Secure@123\",\n  \"role\": \"Seller\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/register", "host": ["{{base_url}}"], "path": ["register"] }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"arjun.seller@recirclehub.com\",\n  \"password\": \"Test@123\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/login", "host": ["{{base_url}}"], "path": ["login"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/users", "host": ["{{base_url}}"], "path": ["users"] }
+          }
+        },
+        {
+          "name": "Get All Users by Role",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users?role=Seller",
+              "host": ["{{base_url}}"],
+              "path": ["users"],
+              "query": [{ "key": "role", "value": "Seller" }]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/user/1", "host": ["{{base_url}}"], "path": ["user", "1"] }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Arjun Mehta Updated\",\n  \"phone\": \"9000000000\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/update_user/1", "host": ["{{base_url}}"], "path": ["update_user", "1"] }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{base_url}}/delete_user/1", "host": ["{{base_url}}"], "path": ["delete_user", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/categories", "host": ["{{base_url}}"], "path": ["categories"] }
+          }
+        },
+        {
+          "name": "Add Category",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category_name\": \"Glass Waste\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/add_category", "host": ["{{base_url}}"], "path": ["add_category"] }
+          }
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category_name\": \"Glass & Ceramic Waste\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/update_category/1", "host": ["{{base_url}}"], "path": ["update_category", "1"] }
+          }
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{base_url}}/delete_category/1", "host": ["{{base_url}}"], "path": ["delete_category", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Waste Listings",
+      "item": [
+        {
+          "name": "Get All Waste Listings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/waste", "host": ["{{base_url}}"], "path": ["waste"] }
+          }
+        },
+        {
+          "name": "Get Waste Listing by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/waste/1", "host": ["{{base_url}}"], "path": ["waste", "1"] }
+          }
+        },
+        {
+          "name": "Add Waste Listing",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"seller_id\": 1,\n  \"category_id\": 1,\n  \"title\": \"Shredded Plastic Waste\",\n  \"description\": \"Clean industrial plastic shred\",\n  \"weight\": 100,\n  \"unit\": \"kg\",\n  \"price\": 15.5,\n  \"location\": \"Chennai\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/add_waste", "host": ["{{base_url}}"], "path": ["add_waste"] }
+          }
+        },
+        {
+          "name": "Update Waste Listing",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 18.0,\n  \"status\": \"Available\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/update_waste/1", "host": ["{{base_url}}"], "path": ["update_waste", "1"] }
+          }
+        },
+        {
+          "name": "Delete Waste Listing",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{base_url}}/delete_waste/1", "host": ["{{base_url}}"], "path": ["delete_waste", "1"] }
+          }
+        },
+        {
+          "name": "Search Waste (category + location)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/search?category=plastic&location=chennai",
+              "host": ["{{base_url}}"],
+              "path": ["search"],
+              "query": [
+                { "key": "category", "value": "plastic" },
+                { "key": "location", "value": "chennai" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get All Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/orders", "host": ["{{base_url}}"], "path": ["orders"] }
+          }
+        },
+        {
+          "name": "Place Order",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"buyer_id\": 3,\n  \"listing_id\": 2,\n  \"quantity\": 20\n}"
+            },
+            "url": { "raw": "{{base_url}}/order", "host": ["{{base_url}}"], "path": ["order"] }
+          }
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Confirmed\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/update_order/1", "host": ["{{base_url}}"], "path": ["update_order", "1"] }
+          }
+        },
+        {
+          "name": "Delete Order",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{base_url}}/delete_order/1", "host": ["{{base_url}}"], "path": ["delete_order", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Dashboard Analytics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/dashboard", "host": ["{{base_url}}"], "path": ["dashboard"] }
+          }
+        }
+      ]
+    }
+  ]
+}
